@@ -1,7 +1,7 @@
 import "./App.css"
 import {Formik, Field, Form, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
-import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/css/bootstrap.min.css"
 
 const validationSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -37,11 +37,145 @@ const initialValues = {
     acceptTerms: false,
 };
 
-const App = () => {
-	return (
-		<div className="register-form container col-md-4 pt-5">
-		</div>
-	);
+const handleSubmit = (values) => {
+    console.log(values)
 };
+
+const App = () => {
+    return (
+        <div className="container">
+            <div className="row">
+                <div className="col-md-6 offset-md-3 pt-3">
+                    <h1 className="text-center">Inscription</h1>
+                    <Formik
+                        initialValues={initialValues}
+                        validationSchema={validationSchema}
+                        onSubmit={(values) =>handleSubmit(values)}
+                    >
+                        {({ resetForm }) => (
+                            <Form>
+                                <div className="form-group mb-3">
+                                    <label htmlFor="firstName">
+                                        Prénoms:
+                                    </label>
+                                    <Field
+                                        type="text"
+                                        id="firstName"
+                                        name="firstName"
+                                        className="form-control"
+                                    />
+                                    <ErrorMessage
+                                        name="firstName"
+                                        component="small"
+                                        className="text-danger"
+                                    />
+                                </div>
+                                <div className="form-group mb-3">
+                                    <label htmlFor="lastName">
+                                        Nom:
+                                    </label>
+                                    <Field
+                                        type="text"
+                                        id="lastName"
+                                        name="lastName"
+                                        className="form-control"
+                                    />
+                                    <ErrorMessage
+                                        name="lastName"
+                                        component="small"
+                                        className="text-danger"
+                                    />
+                                </div>
+                                <div className="form-group mb-3">
+                                    <label htmlFor="email">
+                                        Email:
+                                    </label>
+                                    <Field
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        className="form-control"
+                                    />
+                                    <ErrorMessage
+                                        name="email"
+                                        component="small"
+                                        className="text-danger"
+                                    />
+                                </div>
+                                <div className="form-group mb-3">
+                                    <label htmlFor="password">
+                                        Mot de passe:
+                                    </label>
+                                    <Field
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        className="form-control"
+                                    />
+                                    <ErrorMessage
+                                        name="password"
+                                        component="small"
+                                        className="text-danger"
+                                    />
+                                </div>
+                                <div className="form-group mb-3">
+                                    <label htmlFor="confirmPassword">
+                                        Confirmer le mot de
+                                        passe:
+                                    </label>
+                                    <Field
+                                        type="password"
+                                        id="confirmPassword"
+                                        name="confirmPassword"
+                                        className="form-control"
+                                    />
+                                    <ErrorMessage
+                                        name="confirmPassword"
+                                        component="small"
+                                        className="text-danger"
+                                    />
+                                </div>
+                                <div className="form-group form-check mb-5">
+                                    <Field
+                                        name="acceptTerms"
+                                        type="checkbox"
+                                        className="form-check-input"
+                                    />
+                                    <label
+                                        htmlFor="acceptTerms"
+                                        className="form-check-label"
+                                    >
+                                        J'ai lu et j'accepte
+                                        les conditions
+                                    </label>
+                                    <ErrorMessage
+                                        name="acceptTerms"
+                                        component="small"
+                                        className="text-danger d-block"
+                                    />
+                                </div>
+                                <div className="form-group d-flex justify-content-end gap-3">
+                                    <button
+                                        type="submit"
+                                        className="btn btn-primary"
+                                    >
+                                        S'inscrire
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={resetForm}
+                                        className="btn btn-danger"
+                                    >
+                                        Annuler
+                                    </button>
+                                </div>
+                            </Form>
+                        )}
+                    </Formik>
+                </div>
+            </div>
+        </div>
+    );
+};    
 
 export default App;
