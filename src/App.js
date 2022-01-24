@@ -28,6 +28,15 @@ const validationSchema = Yup.object().shape({
     acceptTerms: Yup.bool().oneOf([true], "Accepter les conditions est obligatoire"),
 });
 
+const initialValues = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    acceptTerms: false,
+};
+
 const App = () => {
 	return (
 		<div className="register-form container col-md-4 pt-5">
